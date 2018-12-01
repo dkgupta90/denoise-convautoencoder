@@ -18,7 +18,7 @@ import noise_adder as nadd
 import random
 
 count = 0
-n_duplicates = 1 #number of noisy duplicates of each image
+n_duplicates = 3 #number of noisy duplicates of each image
 
 sigma_fact_range = [0, 0.2]
 mu_fact_range = [0 , 0.2]
@@ -28,8 +28,8 @@ obj_noise = nadd.NoiseAdder()
 # Defining the conotrlling parameters for noise addition
 
 list_of_files = glob.glob('../data/raw/cseg_fault_dyke_fold_model/*')
-input_path = '../data/processed/cseg_fault_dyke_fold_model_50/input/'
-output_path = '../data/processed/cseg_fault_dyke_fold_model_50/output/'
+input_path = '../data/processed/cseg_fault_dyke_fold_model_100/input/'
+output_path = '../data/processed/cseg_fault_dyke_fold_model_100/output/'
 
 noisefree_indices = [] # to store the indices of files that contain noisefree data
 
@@ -37,7 +37,7 @@ for file in list_of_files:
     
     # load the data from the npy file
     raw_data = np.load(file)
-    raw_data = raw_data[::4, ::4]
+    raw_data = raw_data[::2, ::2]
     
     # add the noisefree file into the dataset
     fname_i = input_path + 'data_' + str(count) + '.npy'
